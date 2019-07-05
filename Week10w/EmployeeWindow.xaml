@@ -1,0 +1,53 @@
+﻿<Window x:Class="Week10w.EmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Week10w"
+        mc:Ignorable="d"
+        Title="Search results" Height="800" Width="800" ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <!-- style for alternating line colors -->
+        <Style x:Key="AlternatingListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="LightCyan"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="LightYellow"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <ListBox Name="ListBox" ItemsSource="{Binding Employee}" Margin="5" HorizontalContentAlignment="Stretch" AlternationCount="2" 
+                 ItemContainerStyle="{StaticResource AlternatingListBoxItemStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"  HorizontalAlignment= "Right"  FontSize="24" Content = "Employee ID: "/>
+                        <Label Grid.Row="0" Grid.Column="1"   HorizontalAlignment ="Left"  FontSize="24" Content = "{Binding idEmployee}"/>
+                        <Label Grid.Row="1" Grid.Column="0"  HorizontalAlignment= "Right"  FontSize="24" Content = "Name: "/>
+                        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment= "Left" FontSize="24" Content="{Binding Name}"/>
+                        <Label Grid.Row="2" Grid.Column="0"  HorizontalAlignment= "Right"  FontSize="24" Content = "Position: "/>
+                        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment= "Left" FontSize="24" Content="{Binding Position}"/>
+                        <Label Grid.Row="3" Grid.Column="0"  HorizontalAlignment= "Right"  FontSize="24" Content = "Hourly Wage: $"/>
+                        <Label Grid.Row="3" Grid.Column="1"  HorizontalAlignment= "Left" FontSize="24" Content = "{Binding WageHourly}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
